@@ -1,18 +1,21 @@
+import React, { FormEvent } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { HiOutlineSearch } from 'react-icons/hi';
-
 import { errNotify } from '../../notifications/error';
 import { ERR_EMPTY_SEARCH } from '../../notifications/constants';
 
 import styles from './SearchBar.module.css';
 
-export const SearchBar = ({ onSearch }) => {
-  const handleSubmit = evt => {
+interface Props {
+  onSearch: (searchStr: string) => void;
+}
+
+export const SearchBar: React.FC<Props> = ({ onSearch }) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const form = evt.target;
-    console.log(form);
-    const searchStr = form.elements.search.value;
-    console.log('searchStr', searchStr);
+    const form = evt.target as HTMLFormElement;
+    const searchInput = form.elements.namedItem('search') as HTMLInputElement;
+    const searchStr = searchInput.value;
     if (searchStr.trim() === '') {
       errNotify(ERR_EMPTY_SEARCH);
       return;

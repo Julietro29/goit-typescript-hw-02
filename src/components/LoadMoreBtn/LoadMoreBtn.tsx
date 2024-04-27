@@ -1,7 +1,13 @@
+import React from 'react';
 import Button from '../Button/Button';
 import { MOREBTN_CAPTION } from '../../notifications/constants';
 
-export const LoadMoreBtn = ({ isVisible, onClick }) => {
+interface Props {
+  isVisible: boolean;
+  onClick: () => void;
+}
+
+export const LoadMoreBtn: React.FC<Props> = ({ isVisible, onClick }) => {
   return (
     <>
       {isVisible && (
@@ -10,4 +16,3 @@ export const LoadMoreBtn = ({ isVisible, onClick }) => {
     </>
   );
 };
-

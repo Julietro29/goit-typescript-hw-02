@@ -1,10 +1,25 @@
+import React from 'react';
 import { ImageCard } from './ImageCard';
 
 import styles from './ImageGallery.module.css';
 
-export const ImageGallery = ({ images, openModal }) => {
-  const handleImageClick = event => {
-    const clickedCard = event.target.closest('li');
+interface Image {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  description: string;
+}
+
+interface Props {
+  images: Image[];
+  openModal: (image: Image) => void;
+}
+
+const ImageGallery: React.FC<Props> = ({ images, openModal }) => {
+  const handleImageClick = (event: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
+    const clickedCard = (event.target as HTMLElement).closest('li');
     if (clickedCard) {
       const imageId = clickedCard.dataset.imageid;
       console.log('key', imageId);
@@ -14,6 +29,7 @@ export const ImageGallery = ({ images, openModal }) => {
       }
     }
   };
+
   return (
     <>
       {images.length > 0 && (
@@ -28,3 +44,5 @@ export const ImageGallery = ({ images, openModal }) => {
     </>
   );
 };
+
+export default ImageGallery;
