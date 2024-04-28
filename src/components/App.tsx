@@ -10,15 +10,28 @@ import ImageModal  from './ImageModal/ImageModal';
 import { fetchData } from '../api/fetch-data';
 import styles from './App.module.css';
 
+interface ImageData {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  description: string;
+  user: {
+    username: string;
+  };
+  likes: number;
+}
+
 const App = () => {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [currPage, setCurrPage] = useState<number>(0);
   const [hasMorePages, setHasMorePages] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>('');
 
-  const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -55,7 +68,7 @@ const App = () => {
   };
 
   const handleMore = () => updateImages(filter, currPage + 1);
-  const openModal = (image: any) => {
+  const openModal = (image: ImageData) => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };

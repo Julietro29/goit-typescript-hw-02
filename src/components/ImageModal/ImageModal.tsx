@@ -3,8 +3,10 @@ import Modal from 'react-modal';
 import { RxExit } from 'react-icons/rx';
 import styles from './ImageModal.module.css';
 
-interface Image {
+interface ImageModal {
+  id: string;
   urls: {
+    small: string;
     regular: string;
   };
   description: string;
@@ -14,9 +16,10 @@ interface Image {
   likes: number;
 }
 
+
 interface Props {
   isOpen: boolean;
-  image: Image | null;
+  image: ImageModal | null;
   onCloseClick: () => void;
 }
 

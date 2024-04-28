@@ -2,11 +2,19 @@ import { useState } from 'react';
 import styles from './ImageCard.module.css';
 
 interface Image {
+  id: string;
   urls: {
     small: string;
+    regular: string;
   };
   description: string;
+  user: {
+    username: string;
+  };
+  likes: number;
 }
+
+
 
 interface Props {
   image: Image;

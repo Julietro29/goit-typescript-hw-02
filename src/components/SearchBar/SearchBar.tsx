@@ -34,7 +34,7 @@ export const SearchBar: React.FC<Props> = ({ onSearch }) => {
             name="search"
             autoComplete="off"
             autoFocus
-            placeholder="Search images and photos"
+            placeholder="Search images and photos..."
           />
           <Toaster />
         </div>

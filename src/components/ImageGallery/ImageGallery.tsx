@@ -10,7 +10,13 @@ interface Image {
     regular: string;
   };
   description: string;
+  user: {
+    username: string;
+  };
+  likes: number;
 }
+
+
 
 interface Props {
   images: Image[];
@@ -22,10 +28,11 @@ const ImageGallery: React.FC<Props> = ({ images, openModal }) => {
     const clickedCard = (event.target as HTMLElement).closest('li');
     if (clickedCard) {
       const imageId = clickedCard.dataset.imageid;
-      console.log('key', imageId);
-      const clickedImageObj = images.find(image => image.id === imageId);
-      if (clickedImageObj) {
-        openModal(clickedImageObj);
+      if (imageId) {
+        const clickedImageObj = images.find(image => image.id === imageId);
+        if (clickedImageObj) {
+          openModal(clickedImageObj);
+        }
       }
     }
   };
