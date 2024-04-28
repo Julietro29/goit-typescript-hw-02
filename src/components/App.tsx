@@ -11,21 +11,21 @@ import { fetchData } from '../api/fetch-data';
 import styles from './App.module.css';
 
 const App = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [currPage, setCurrPage] = useState(0);
-  const [hasMorePages, setHasMorePages] = useState(false);
-  const [filter, setFilter] = useState('');
+  const [items, setItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [currPage, setCurrPage] = useState<number>(0);
+  const [hasMorePages, setHasMorePages] = useState<boolean>(false);
+  const [filter, setFilter] = useState<string>('');
 
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     Modal.setAppElement('#root');
   }, []);
 
-  const updateImages = async (strFilter, page) => {
+  const updateImages = async (strFilter: string, page: number) => {
     try {
       setError(false);
       setLoading(true);
@@ -46,7 +46,7 @@ const App = () => {
     }
   };
 
-  const handleSearch = strFilter => {
+  const handleSearch = (strFilter: string) => {
     setFilter(strFilter);
     setItems([]);
     setCurrPage(0);
@@ -55,7 +55,7 @@ const App = () => {
   };
 
   const handleMore = () => updateImages(filter, currPage + 1);
-  const openModal = image => {
+  const openModal = (image: any) => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };
